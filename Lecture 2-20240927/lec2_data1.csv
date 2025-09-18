@@ -1,0 +1,8 @@
+﻿id,gender,age,city,lecture_id,moodle_id
+1,male,19,Taipei,L1,7
+2,female,20,Tainan,L2,6
+3,male,22,Taipei,L3,1
+4,female,24,Taipei,L1,2
+5,female,22,Tainan,L2,3
+6,female,21,Taipei,L3,5
+7,male,20,Tainan,L2,4
