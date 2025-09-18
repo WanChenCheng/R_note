@@ -1,0 +1,704 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={HW4},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{HW4}
+\author{}
+\date{\vspace{-2.5em}2024-12-06}
+
+\begin{document}
+\maketitle
+
+財務指標資料分析 Analysis of financial indexes
+
+分析財務報表，了解公司企業特性，以降維的方式，找出有意義的指標，衡量績優公司。
+
+資料financialdata\_20231113.csv有382間公司的財務指標。此數據集包含了重點財務指標，如ROE、周轉率和研發投資、
+SeasonReturn(\%)（季度回報率）、TwoMonthReturn(\%)（兩月回報率）、MonthReturn(\%)（月回報率）和
+WeekReturn(\%)（周回報）等。
+
+\#1.以PCA或SPCA分析，找出前二個主成份共能解釋多少變異？
+
+\#2.找出前三個主成份分別重點變數為何，需說明你的理由。
+
+\#3.依第一、二主成份結果說明，找出適合投資的公司。(例如：適合投資資產報酬率高的XX公司)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Part0. Preparation}
+\FunctionTok{library}\NormalTok{(readr)}
+\NormalTok{fin }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"C:/Users/Ava/Desktop/R/HW4/financialdata\_20231113.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 398 Columns: 18
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (1): Name
+## dbl (17): Code, ROE, GrossMargin, OperatingProfitMargin, NetProfitMargin, As...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{View}\NormalTok{(fin)}
+\NormalTok{fin }\OtherTok{\textless{}{-}}\NormalTok{ fin[,}\DecValTok{3}\SpecialCharTok{:}\DecValTok{18}\NormalTok{]}
+\FunctionTok{library}\NormalTok{(summarytools)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 套件 'summarytools' 是用 R 版本 4.4.2 來建造的
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dfSummary}\NormalTok{(fin) }\CommentTok{\# provides a detailed summary of your data frame}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Data Frame Summary  
+## fin  
+## Dimensions: 398 x 16  
+## Duplicates: 16  
+## 
+## ---------------------------------------------------------------------------------------------------------------------------------
+## No   Variable                          Stats / Values            Freqs (% of Valid)    Graph                 Valid      Missing  
+## ---- --------------------------------- ------------------------- --------------------- --------------------- ---------- ---------
+## 1    ROE                               Mean (sd) : 0 (0.1)       382 distinct values               : .       398        0        
+##      [numeric]                         min < med < max:                                            : :       (100.0%)   (0.0%)   
+##                                        -0.4 < 0 < 0.2                                              : :                           
+##                                        IQR (CV) : 0 (4)                                            : :                           
+##                                                                                                  . : :                           
+## 
+## 2    GrossMargin                       Mean (sd) : 0.2 (0.3)     382 distinct values             :           398        0        
+##      [numeric]                         min < med < max:                                          :           (100.0%)   (0.0%)   
+##                                        -2.3 < 0.2 < 0.8                                          :                               
+##                                        IQR (CV) : 0.2 (1.1)                                      :                               
+##                                                                                                  : .                             
+## 
+## 3    OperatingProfitMargin             Mean (sd) : -0.9 (8)      382 distinct values                     :   398        0        
+##      [numeric]                         min < med < max:                                                  :   (100.0%)   (0.0%)   
+##                                        -99.4 < 0 < 0.6                                                   :                       
+##                                        IQR (CV) : 0.2 (-8.4)                                             :                       
+##                                                                                                          :                       
+## 
+## 4    NetProfitMargin                   Mean (sd) : -0.7 (7)      382 distinct values                     :   398        0        
+##      [numeric]                         min < med < max:                                                  :   (100.0%)   (0.0%)   
+##                                        -99 < 0.1 < 9.7                                                   :                       
+##                                        IQR (CV) : 0.2 (-10.2)                                            :                       
+##                                                                                                          :                       
+## 
+## 5    AssetTurnoverRatio                Mean (sd) : 0.2 (0.1)     382 distinct values     :                   398        0        
+##      [numeric]                         min < med < max:                                . :                   (100.0%)   (0.0%)   
+##                                        0 < 0.1 < 0.9                                   : : .                                     
+##                                        IQR (CV) : 0.1 (0.8)                            : : :                                     
+##                                                                                        : : : : .                                 
+## 
+## 6    FinancialLeverage                 Mean (sd) : 2.1 (2)       382 distinct values   :                     398        0        
+##      [numeric]                         min < med < max:                                :                     (100.0%)   (0.0%)   
+##                                        1 < 1.7 < 31.9                                  :                                         
+##                                        IQR (CV) : 0.9 (0.9)                            :                                         
+##                                                                                        :                                         
+## 
+## 7    QoQ                               Mean (sd) : 0 (3.5)       382 distinct values           :             398        0        
+##      [numeric]                         min < med < max:                                        :             (100.0%)   (0.0%)   
+##                                        -25.9 < -0.1 < 37.6                                     :                                 
+##                                        IQR (CV) : 0.9 (-197.5)                               . :                                 
+##                                                                                              : :                                 
+## 
+## 8    R.DExpenseRatio                   Mean (sd) : 0.6 (5.5)     286 distinct values   :                     398        0        
+##      [numeric]                         min < med < max:                                :                     (100.0%)   (0.0%)   
+##                                        0 < 0 < 81.2                                    :                                         
+##                                        IQR (CV) : 0.1 (10)                             :                                         
+##                                                                                        :                                         
+## 
+## 9    CapitalExpendituresRatio          Mean (sd) : 0 (1.2)       382 distinct values         :               398        0        
+##      [numeric]                         min < med < max:                                      :               (100.0%)   (0.0%)   
+##                                        -9.6 < 0 < 17.7                                       :                                   
+##                                        IQR (CV) : 0 (-41.6)                                  :                                   
+##                                                                                              :                                   
+## 
+## 10   InventoryTurnover                 Mean (sd) : Inf (NaN)     375 distinct values                         398        0        
+##      [numeric]                         min < med < max:                                                      (100.0%)   (0.0%)   
+##                                        0 < 0.9 < Inf                                                                             
+##                                        IQR (CV) : 1.1 (NaN)                                                                      
+## 
+## 11   AccountsPayableTurnoverRatio      Mean (sd) : Inf (NaN)     379 distinct values                         398        0        
+##      [numeric]                         min < med < max:                                                      (100.0%)   (0.0%)   
+##                                        0 < 1.9 < Inf                                                                             
+##                                        IQR (CV) : 2 (NaN)                                                                        
+## 
+## 12   AccountsReceivableTurnoverRatio   Mean (sd) : Inf (NaN)     378 distinct values                         398        0        
+##      [numeric]                         min < med < max:                                                      (100.0%)   (0.0%)   
+##                                        0.1 < 1.3 < Inf                                                                           
+##                                        IQR (CV) : 1.1 (NaN)                                                                      
+## 
+## 13   SeasonReturn...                   Mean (sd) : -4.5 (28.4)   374 distinct values       :                 398        0        
+##      [numeric]                         min < med < max:                                    : .               (100.0%)   (0.0%)   
+##                                        -73.2 < -1.8 < 181                                . : :                                   
+##                                        IQR (CV) : 30.7 (-6.4)                            : : :                                   
+##                                                                                        : : : : :                                 
+## 
+## 14   TwoMonthReturn...                 Mean (sd) : -9 (27.4)     374 distinct values         :               398        0        
+##      [numeric]                         min < med < max:                                      :               (100.0%)   (0.0%)   
+##                                        -78.1 < -6.9 < 132.4                                : :                                   
+##                                        IQR (CV) : 32.9 (-3.1)                            . : : :                                 
+##                                                                                        . : : : : .                               
+## 
+## 15   MonthReturn...                    Mean (sd) : -7.8 (29.2)   374 distinct values         :               398        0        
+##      [numeric]                         min < med < max:                                      :               (100.0%)   (0.0%)   
+##                                        -84.6 < -6 < 135                                    : : .                                 
+##                                        IQR (CV) : 32.7 (-3.8)                            . : : :                                 
+##                                                                                          : : : : :                               
+## 
+## 16   WeekReturn...                     Mean (sd) : 3.1 (6.2)     361 distinct values           :             398        0        
+##      [numeric]                         min < med < max:                                        :             (100.0%)   (0.0%)   
+##                                        -40.7 < 2.2 < 49                                        :                                 
+##                                        IQR (CV) : 3.9 (2)                                      : :                               
+##                                                                                                : :                               
+## ---------------------------------------------------------------------------------------------------------------------------------
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{view}\NormalTok{(}\FunctionTok{dfSummary}\NormalTok{(fin)) }\CommentTok{\# see the results in RStudio’s Viewer; stview(dfSummary(murders))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Switching method to 'browser'
+## Output file written: C:\Users\Ava\AppData\Local\Temp\RtmpueRitk\file33e84b864ecc.html
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 套件 'tidyverse' 是用 R 版本 4.4.2 來建造的
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: 套件 'ggplot2' 是用 R 版本 4.4.2 來建造的
+\end{verbatim}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v purrr     1.0.2
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   3.5.1     v tibble    3.2.1
+## v lubridate 1.9.3     v tidyr     1.3.1
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## x tibble::view()  masks summarytools::view()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fin }\OtherTok{\textless{}{-}}\NormalTok{ fin }\SpecialCharTok{|\textgreater{}} 
+  \FunctionTok{filter}\NormalTok{(}
+    \SpecialCharTok{!}\NormalTok{(InventoryTurnover }\SpecialCharTok{==} \ConstantTok{Inf} \SpecialCharTok{|} 
+\NormalTok{        AccountsPayableTurnoverRatio }\SpecialCharTok{==} \ConstantTok{Inf} \SpecialCharTok{|}
+\NormalTok{        AccountsReceivableTurnoverRatio }\SpecialCharTok{==} \ConstantTok{Inf}\NormalTok{)}
+\NormalTok{  ) }\CommentTok{\#!用來移除東東}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Part1. Dimension reduction (Correlation)}
+
+\DocumentationTok{\#\# understand ur data}
+\NormalTok{M }\OtherTok{=} \FunctionTok{cor}\NormalTok{(fin)}
+
+\DocumentationTok{\#\# create heatmap for correlation }
+\FunctionTok{library}\NormalTok{(reshape2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 套件 'reshape2' 是用 R 版本 4.4.2 來建造的
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 載入套件：'reshape2'
+\end{verbatim}
+
+\begin{verbatim}
+## 下列物件被遮斷自 'package:tidyr':
+## 
+##     smiths
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{melted\_cormat }\OtherTok{\textless{}{-}} \FunctionTok{melt}\NormalTok{(M)}
+\FunctionTok{head}\NormalTok{(melted\_cormat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    Var1 Var2      value
+## 1                   ROE  ROE  1.0000000
+## 2           GrossMargin  ROE  0.4275882
+## 3 OperatingProfitMargin  ROE  0.1655295
+## 4       NetProfitMargin  ROE  0.1932846
+## 5    AssetTurnoverRatio  ROE  0.2633898
+## 6     FinancialLeverage  ROE -0.1518323
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ melted\_cormat,}
+       \FunctionTok{aes}\NormalTok{(Var1, Var2)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ value), }\AttributeTok{colour =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient2}\NormalTok{(}\AttributeTok{low =} \StringTok{"firebrick4"}\NormalTok{, }\AttributeTok{high =} \StringTok{"steelblue"}\NormalTok{,}
+                       \AttributeTok{mid =} \StringTok{"white"}\NormalTok{, }\AttributeTok{midpoint =} \DecValTok{0}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{guides}\NormalTok{(}\AttributeTok{fill=}\FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{title=}\StringTok{"Correlation"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{, }\AttributeTok{vjust =} \DecValTok{1}\NormalTok{),}
+        \AttributeTok{axis.title =} \FunctionTok{element\_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(corrplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: 套件 'corrplot' 是用 R 版本 4.4.2 來建造的
+\end{verbatim}
+
+\begin{verbatim}
+## corrplot 0.95 loaded
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{corrplot}\NormalTok{(M, }\AttributeTok{method=}\StringTok{"circle"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Part2.PCA}
+\CommentTok{\#install.packages("stats")}
+\FunctionTok{library}\NormalTok{(stats)}
+\NormalTok{pca}\OtherTok{\textless{}{-}} \FunctionTok{prcomp}\NormalTok{(fin, }\AttributeTok{center =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{scale =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{names}\NormalTok{(pca) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "sdev"     "rotation" "center"   "scale"    "x"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(pca)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importance of components:
+##                          PC1    PC2     PC3     PC4     PC5     PC6     PC7
+## Standard deviation     1.901 1.7283 1.22973 1.12692 1.03640 1.02810 0.98257
+## Proportion of Variance 0.226 0.1867 0.09451 0.07937 0.06713 0.06606 0.06034
+## Cumulative Proportion  0.226 0.4127 0.50716 0.58653 0.65366 0.71973 0.78007
+##                            PC8     PC9    PC10    PC11    PC12    PC13    PC14
+## Standard deviation     0.94637 0.92963 0.86573 0.72578 0.59143 0.24246 0.20599
+## Proportion of Variance 0.05598 0.05401 0.04684 0.03292 0.02186 0.00367 0.00265
+## Cumulative Proportion  0.83604 0.89006 0.93690 0.96982 0.99168 0.99536 0.99801
+##                           PC15   PC16
+## Standard deviation     0.14363 0.1060
+## Proportion of Variance 0.00129 0.0007
+## Cumulative Proportion  0.99930 1.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(pca) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# how to get the results of summary(pca)}
+\NormalTok{var }\OtherTok{=}\NormalTok{ pca}\SpecialCharTok{$}\NormalTok{sdev}\SpecialCharTok{\^{}}\DecValTok{2} \CommentTok{\#該主成份解釋變異數的數值}
+\NormalTok{prop }\OtherTok{=}\NormalTok{ (pca}\SpecialCharTok{$}\NormalTok{sdev)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/} \FunctionTok{sum}\NormalTok{((pca}\SpecialCharTok{$}\NormalTok{sdev)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\CommentTok{\#該主成份解釋變異數的比率}
+\NormalTok{cum\_prop }\OtherTok{=} \FunctionTok{cumsum}\NormalTok{((pca}\SpecialCharTok{$}\NormalTok{sdev)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/} \FunctionTok{sum}\NormalTok{((pca}\SpecialCharTok{$}\NormalTok{sdev)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\CommentTok{\#該主成份解釋變異數的累積比率}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# scree plot: variance}
+\FunctionTok{screeplot}\NormalTok{(pca) }\CommentTok{\#same as plot(pca)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(pca, }\AttributeTok{type=}\StringTok{"line"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\DecValTok{1}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{) }\CommentTok{\#Kaiser eigenvalue{-}greater{-}than{-}one rule, choose pc1\textasciitilde{}pc5 by Kaiser}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(pca)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Importance of components:
+##                          PC1    PC2     PC3     PC4     PC5     PC6     PC7
+## Standard deviation     1.901 1.7283 1.22973 1.12692 1.03640 1.02810 0.98257
+## Proportion of Variance 0.226 0.1867 0.09451 0.07937 0.06713 0.06606 0.06034
+## Cumulative Proportion  0.226 0.4127 0.50716 0.58653 0.65366 0.71973 0.78007
+##                            PC8     PC9    PC10    PC11    PC12    PC13    PC14
+## Standard deviation     0.94637 0.92963 0.86573 0.72578 0.59143 0.24246 0.20599
+## Proportion of Variance 0.05598 0.05401 0.04684 0.03292 0.02186 0.00367 0.00265
+## Cumulative Proportion  0.83604 0.89006 0.93690 0.96982 0.99168 0.99536 0.99801
+##                           PC15   PC16
+## Standard deviation     0.14363 0.1060
+## Proportion of Variance 0.00129 0.0007
+## Cumulative Proportion  0.99930 1.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Rotation matrix: Loadings are the percent of variance explained by the variable}
+\NormalTok{pca}\SpecialCharTok{$}\NormalTok{rotation}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                           PC1          PC2          PC3
+## ROE                              2.262005e-01  0.142487701  0.413897893
+## GrossMargin                      2.879591e-01 -0.017808599  0.514340008
+## OperatingProfitMargin            4.679090e-01 -0.204713662 -0.170422275
+## NetProfitMargin                  4.778089e-01 -0.208629456 -0.123764949
+## AssetTurnoverRatio               8.854537e-02  0.038220221 -0.188093311
+## FinancialLeverage                7.112274e-03 -0.010491617 -0.228634007
+## QoQ                             -8.705163e-05 -0.003838033  0.002496763
+## R.DExpenseRatio                 -3.615357e-01  0.161373630 -0.014675974
+## CapitalExpendituresRatio         4.041766e-01 -0.193878555 -0.210816427
+## InventoryTurnover                2.090362e-02  0.026925329  0.004197998
+## AccountsPayableTurnoverRatio    -9.682597e-02 -0.043707775 -0.587578955
+## AccountsReceivableTurnoverRatio  3.597014e-02  0.081323477  0.006498225
+## SeasonReturn...                 -1.875851e-01 -0.517524150  0.088541499
+## TwoMonthReturn...               -1.880722e-01 -0.526217952  0.107040051
+## MonthReturn...                  -1.853420e-01 -0.522076568  0.123181187
+## WeekReturn...                    2.641860e-02  0.046699795 -0.087658057
+##                                         PC4          PC5          PC6
+## ROE                             -0.37533737 -0.142127787  0.061882518
+## GrossMargin                      0.13709488 -0.004921220 -0.045775340
+## OperatingProfitMargin            0.02755694  0.037711675  0.009057411
+## NetProfitMargin                  0.03399788  0.042747201 -0.006231988
+## AssetTurnoverRatio              -0.65367097 -0.168819837  0.024526001
+## FinancialLeverage                0.30626401 -0.602389907 -0.117112155
+## QoQ                             -0.11422617 -0.186393522  0.690810789
+## R.DExpenseRatio                 -0.03453150 -0.005126072  0.063132960
+## CapitalExpendituresRatio         0.02993186  0.046402482  0.044050081
+## InventoryTurnover               -0.33057783 -0.541095219 -0.400376950
+## AccountsPayableTurnoverRatio    -0.11118133  0.138112788 -0.054611875
+## AccountsReceivableTurnoverRatio  0.41093221 -0.398300901 -0.019620042
+## SeasonReturn...                 -0.07405672 -0.084769337  0.028189188
+## TwoMonthReturn...               -0.04646411 -0.067722253  0.013029032
+## MonthReturn...                  -0.02471309 -0.059755801  0.010927604
+## WeekReturn...                    0.05856588 -0.249768982  0.575967783
+##                                          PC7          PC8         PC9
+## ROE                             -0.155495054 -0.161805901  0.14656694
+## GrossMargin                     -0.043023912  0.029002604  0.04179571
+## OperatingProfitMargin            0.014117346  0.007967187 -0.06323164
+## NetProfitMargin                  0.010984678  0.012568232 -0.04391029
+## AssetTurnoverRatio               0.058801909 -0.241580958  0.47857308
+## FinancialLeverage                0.186787414  0.383007332  0.47711075
+## QoQ                              0.602980269  0.001582045 -0.27653229
+## R.DExpenseRatio                 -0.009975822 -0.008428532 -0.10310608
+## CapitalExpendituresRatio         0.019982489  0.004485504 -0.13554546
+## InventoryTurnover               -0.064023061  0.165640923 -0.62482265
+## AccountsPayableTurnoverRatio    -0.162748324 -0.230182591 -0.10549303
+## AccountsReceivableTurnoverRatio -0.016847998 -0.804027776 -0.05772969
+## SeasonReturn...                 -0.055947046 -0.063278452  0.03150695
+## TwoMonthReturn...               -0.028874181 -0.053031741  0.03606786
+## MonthReturn...                  -0.038442227 -0.048317789  0.02411452
+## WeekReturn...                   -0.731373793  0.177690414 -0.03105732
+##                                          PC10         PC11         PC12
+## ROE                              0.0636631973 -0.491345705 -0.520897471
+## GrossMargin                     -0.3014970541 -0.287749604  0.670178441
+## OperatingProfitMargin            0.1534468238 -0.006475297  0.016626037
+## NetProfitMargin                 -0.0006763723  0.049767633 -0.076183128
+## AssetTurnoverRatio               0.0521316460  0.268430378  0.364045107
+## FinancialLeverage               -0.0182352186 -0.254039237 -0.053814844
+## QoQ                             -0.1676458926 -0.080246646  0.014201648
+## R.DExpenseRatio                  0.6435088099 -0.389891960  0.329401296
+## CapitalExpendituresRatio         0.4756625704 -0.173350500  0.091349949
+## InventoryTurnover               -0.0566184938  0.084620944  0.063756211
+## AccountsPayableTurnoverRatio    -0.4491723499 -0.556072712  0.078623550
+## AccountsReceivableTurnoverRatio  0.0578309077  0.103123230  0.001198627
+## SeasonReturn...                  0.0110515658 -0.044603006 -0.058315188
+## TwoMonthReturn...               -0.0036100169 -0.038330736 -0.018570139
+## MonthReturn...                   0.0294940955 -0.010737392  0.034635624
+## WeekReturn...                   -0.0259875633  0.132583644  0.076004641
+##                                          PC13          PC14         PC15
+## ROE                             -0.0550290009 -0.0003995044 -0.010751710
+## GrossMargin                      0.0555917062 -0.0300421710  0.005533112
+## OperatingProfitMargin           -0.0460271418  0.4937060911 -0.013937587
+## NetProfitMargin                 -0.0647217138  0.3866134333 -0.042602934
+## AssetTurnoverRatio              -0.0031193930 -0.0164612613  0.004446372
+## FinancialLeverage               -0.0085858469 -0.0012145879 -0.010308094
+## QoQ                             -0.0092414477  0.0033994549 -0.008241349
+## R.DExpenseRatio                 -0.0318493747  0.3622396105 -0.011113261
+## CapitalExpendituresRatio         0.0876007585 -0.6747234845  0.052696495
+## InventoryTurnover               -0.0069719602 -0.0033471783  0.004628121
+## AccountsPayableTurnoverRatio    -0.0296452792 -0.0141991069 -0.014376970
+## AccountsReceivableTurnoverRatio  0.0005967016  0.0065499145  0.005145363
+## SeasonReturn...                  0.7552918214  0.0798428909 -0.291802321
+## TwoMonthReturn...               -0.1392014494  0.0404982978  0.800850288
+## MonthReturn...                  -0.6227171661 -0.1041250082 -0.517479924
+## WeekReturn...                   -0.0130227178 -0.0039497217  0.014152911
+##                                          PC16
+## ROE                              0.0227542125
+## GrossMargin                     -0.0002459434
+## OperatingProfitMargin            0.6585304695
+## NetProfitMargin                 -0.7374759959
+## AssetTurnoverRatio              -0.0218937108
+## FinancialLeverage               -0.0038162070
+## QoQ                              0.0005167231
+## R.DExpenseRatio                 -0.1415953238
+## CapitalExpendituresRatio        -0.0217852342
+## InventoryTurnover               -0.0011606287
+## AccountsPayableTurnoverRatio     0.0022687755
+## AccountsReceivableTurnoverRatio -0.0054186820
+## SeasonReturn...                 -0.0069104131
+## TwoMonthReturn...               -0.0140906804
+## MonthReturn...                   0.0250398029
+## WeekReturn...                   -0.0046706641
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#visualize}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{melt}\NormalTok{(pca}\SpecialCharTok{$}\NormalTok{rotation[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]), }\FunctionTok{aes}\NormalTok{(Var2, Var1)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_tile}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ value), }\AttributeTok{colour =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient2}\NormalTok{(}\AttributeTok{low =} \StringTok{"firebrick4"}\NormalTok{, }\AttributeTok{high =} \StringTok{"steelblue"}\NormalTok{,}
+                       \AttributeTok{mid =} \StringTok{"white"}\NormalTok{, }\AttributeTok{midpoint =} \DecValTok{0}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{guides}\NormalTok{(}\AttributeTok{fill=}\FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{title=}\StringTok{"Coefficient"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{, }\AttributeTok{vjust =} \DecValTok{1}\NormalTok{),}
+        \AttributeTok{axis.title =} \FunctionTok{element\_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# The actual principal components}
+\FunctionTok{head}\NormalTok{(pca}\SpecialCharTok{$}\NormalTok{x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             PC1        PC2         PC3         PC4         PC5          PC6
+## [1,] -0.2179161 -0.4958004  0.09741213  0.43071007  0.21045545  0.198149145
+## [2,]  0.4041217  0.8273805  0.13908858  0.35198273  0.56628896  0.007694882
+## [3,]  0.5842738  1.1445990 -0.03636913  0.08269959  0.28451378 -0.003999731
+## [4,]  0.6254776  0.8158198 -0.03312042  0.02593911 -0.06817037  0.976322560
+## [5,]  0.5474971  0.5971453 -0.57152988 -1.85406706 -0.29346797  0.028894456
+## [6,] -0.3525386 -1.1646217 -0.35806402 -1.06630820  0.03718275  0.237179371
+##              PC7        PC8         PC9         PC10         PC11        PC12
+## [1,] -0.07886506  0.2235960 -0.48197943  0.155755570  0.103017978 -0.62427327
+## [2,]  0.19727547  0.1725293 -0.63531515  0.091790167  0.014255253 -0.56621537
+## [3,] -0.05019703  0.1799548 -0.06097521  0.174360173 -0.002500336 -0.54135873
+## [4,] -1.20256673  0.2762163 -0.13234820 -0.037640348  0.165450453  0.10281265
+## [5,]  0.17720328 -0.6527534  1.19473337  0.267272818  0.427352992  0.21700767
+## [6,] -0.25432349 -0.5794436  0.34032103  0.007641086  0.193956410  0.02474381
+##              PC13        PC14         PC15          PC16
+## [1,] -0.010957317  0.06549290  0.069545713  0.0288333144
+## [2,]  0.007951359  0.05863049 -0.020541306  0.0030372866
+## [3,]  0.015198745  0.02870554  0.007677974  0.0229239309
+## [4,]  0.019846280 -0.04195950  0.127781399  0.0112154586
+## [5,] -0.054213612 -0.05128238  0.107475468 -0.0224144112
+## [6,] -0.019225458  0.02852078  0.092241786 -0.0005266384
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Standard deviation of components is represents the percent of variation each component explains}
+\NormalTok{pca}\SpecialCharTok{$}\NormalTok{sdev}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 1.9013593 1.7283384 1.2297269 1.1269246 1.0363962 1.0281014 0.9825667
+##  [8] 0.9463667 0.9296317 0.8657294 0.7257815 0.5914285 0.2424554 0.2059949
+## [15] 0.1436337 0.1060037
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Compute variance explained}
+\NormalTok{pve}\OtherTok{=}\NormalTok{(pca}\SpecialCharTok{$}\NormalTok{sdev)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/}\NormalTok{ (}\FunctionTok{sum}\NormalTok{(pca}\SpecialCharTok{$}\NormalTok{sdev}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(pve, }\AttributeTok{xlab=}\StringTok{"Principal Component"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Proportion of Variance Explained "}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{type=}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{)}\CommentTok{\#scree plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{cumsum}\NormalTok{(pve), }\AttributeTok{xlab=}\StringTok{"Principal Component"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Cumulative Proportion of Variance Explained "}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{type=}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h=}\FloatTok{0.8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# pc1 vs pc2 plot}
+\FunctionTok{biplot}\NormalTok{(pca,}\AttributeTok{scale=}\NormalTok{T) }\CommentTok{\#first two components}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{biplot}\NormalTok{(pca,}\AttributeTok{scale=}\NormalTok{T,}\AttributeTok{choices=}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW4_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+\end{document}

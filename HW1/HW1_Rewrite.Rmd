@@ -1,0 +1,100 @@
+---
+title: "HW1 Rewrite"
+output: html_document
+date: "2024-12-06"
+---
+*Q2.*
+```{r}
+#2.
+library(readr)
+library(tidyverse)
+client_list <- read_csv("C:\\Users\\Ava\\Desktop\\R\\HW1\\client_list.csv")
+salesdata <- read_csv("C:\\Users\\Ava\\Desktop\\R\\HW1\\salesdata.csv")
+product_list <- read_csv("C:\\Users\\Ava\\Desktop\\R\\HW1\\product_list.csv")
+#(1.)
+product_list1 <- separate(product_list,Item,into = c("Product","Item"),sep = "_",,convert=TRUE)
+#(2.)
+library(dplyr)
+salesdata_sorted <- salesdata %>% arrange(Client)
+salesdata_sorted  %>% left_join(client_list,by="Client") -> merge1
+merge1  %>% left_join(product_list1,by="Product") -> full_table
+full_table
+#(3.)
+library(tidyverse)
+full_table%>%
+  mutate( Spend = UnitPrice*Quantity ) -> full_table1
+```
+*4. 在full.table將會員等級分組，其中gold和diamond的顧客為一組，其他等級的為一組，針對兩組客戶進行比較介紹（例如平均年紀、性別、國家、消費情況差異等）。*
+
+2-4：無文字敘述分析 -5(需對你跑出的結果進行分析或洞察)
+
+```{r}
+#分組
+full_table2 <- full_table1 %>%
+  mutate(Group = ifelse(Membership %in% c("gold", "diamond"), "Gold & Diamond", "Other"))
+```
+
+```{r}
+ggplot(full_table2, aes(x = Group, y = Spend)) +
+  geom_col(fill = "lightblue") +
+  labs(
+    title = "Total Expenditure by Membership Group", 
+    x = "Membership Group", 
+    y = "Total Spend"
+  ) +
+  theme_minimal()
+```
+根據上圖分析結果，Gold & Diamond 會員在此電商公司的消費高於其他等級的消費者，顯示目前的經營策略和分組是有效的。
+此電商公司可根據目前已知數據進行策略優化，大致可分為兩個方向：加強對Gold & Diamond 會員的忠誠計劃、針對其他會員等級的升級策略。
+
+1. 加強對Gold & Diamond 會員的忠誠計劃
+(1.)個性化優惠與折扣：根據他們的消費習慣，定期發送個性化的優惠券或折扣，以增加再次購買的可能性。
+(2.)專屬活動或禮遇：為 Gold & Diamond訂製專屬活動例如新產品預覽、私人定制服務等，以加強他們的品牌歸屬感。
+
+2. 針對其他會員等級的升級策略
+可定期舉辦促銷活動，如達到一定消費額就可升級為更高等級並獲得相應的福利。
+
+
+```{r}
+ggplot(full_table2, aes(x = Group, fill = Item)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Distribution of Items by Membership Group", 
+    x = "Membership Group", 
+    y = "Count of Items"
+  ) +
+  theme_minimal()
+```
+根據上圖分析結果，Gold & Diamond 會員在 iMac 和 iPad 上的消費額明顯高於其他消費群體，而其他商品的消費額則較為接近。
+此電商公司可根據目前已知數據進行策略優化，大致可分為兩個方向：針對 iMac 和 iPad 的專屬營銷策略、提升其他商品的銷售。
+
+1.針對 iMac 和 iPad 的專屬營銷策略
+(1.)專屬優惠：為 Gold & Diamond 會員提供 iMac 和 iPad 的專屬折扣或促銷活動。例如額外折扣、提供免費配件（如保護套、鍵盤、滑鼠等）。
+(2.)捆綁銷售：針對 Gold & Diamond 會員，設計 iMac 和 iPad 的捆綁銷售優惠，將這些設備與其他相關配件（如耳機、外部硬碟、打印機等）捆綁銷售，以增加每位會員的總消費額。
+
+2.提升其他商品的銷售
+強化品牌故事：強調其先進技術、設計創新和品牌價值，以及其他產品的特色，吸引更多顧客進行消費。
+
+
+*5. 在full.table針對女性客戶進行分析（例如平均年紀、國家、消費情況等），並對他們在不同產品的「總消費」畫圖分析。*
+
+2-5：無文字敘述分析 -5(需對你跑出的結果進行分析或洞察)、不同產品的總消費應以長條圖呈現 -5
+```{r}
+#分組
+full_table2_female <- full_table2[full_table2$Gender =="female",]
+```
+
+```{r}
+library(ggplot2)
+ggplot(full_table2_female,aes(x=Region, y=Spend)) +
+  geom_boxplot() +
+  labs(title="Plot of Client's expenditure",x="Region", y = "Total Amount")+
+  theme_classic()
+```
+
+
+
+
+由圖可挑出三個主力消費國家:巴西、德國、西班牙。這三個國家的女性平均消費較高(尤其西班牙)，可進一步調查對於不同產品的消費金額(如同第四題那樣)，以進行策略優化。
+
+

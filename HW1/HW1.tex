@@ -1,0 +1,619 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={111208094\_hw1},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{111208094\_hw1}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repos =} \FunctionTok{c}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"https://cran.rstudio.com/"}\NormalTok{))}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tinytex"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 將程式套件安載入 'C:/Users/Ava/AppData/Local/R/win-library/4.4'
+## (因為 'lib' 沒有被指定)
+\end{verbatim}
+
+\begin{verbatim}
+## 程式套件 'tinytex' 開啟成功，MD5 和檢查也透過
+## 
+## 下載的二進位程式套件在
+##  C:\Users\Ava\AppData\Local\Temp\Rtmp8qhq90\downloaded_packages 裡
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tinytex}\SpecialCharTok{::}\FunctionTok{install\_tinytex}\NormalTok{(}\AttributeTok{force =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tlmgr install tlgpg
+\end{verbatim}
+
+\begin{verbatim}
+## tlmgr update --self
+\end{verbatim}
+
+\begin{verbatim}
+## tlmgr install tlgpg
+\end{verbatim}
+
+\begin{verbatim}
+## tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg
+\end{verbatim}
+
+\begin{verbatim}
+## tlmgr option repository "https://tw.mirrors.cicku.me/ctan/systems/texlive/tlnet"
+\end{verbatim}
+
+\begin{verbatim}
+## tlmgr update --list
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  請讀入資料：stock = read\_csv(``stock.csv'')
+  資料為2023/12/1\textasciitilde2024/3/7，5個股票的股價，變數為：id\_name：每檔股票的證券代碼與名稱，如：2330台積電，表示證券代碼2330，公司名稱為台積電。type：open
+  代表開盤價，close 代表收盤價。
+  2023/12/1：為該天交易價格（剩下日期變數依此類推）。
+  請用tidyr提到的gather,spread,sperate等函數指令，將資料整理成下方「tidy」格式
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#By myself (我寫好爛好長)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"readr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 將程式套件安載入 'C:/Users/Ava/AppData/Local/R/win-library/4.4'
+## (因為 'lib' 沒有被指定)
+\end{verbatim}
+
+\begin{verbatim}
+## 程式套件 'readr' 開啟成功，MD5 和檢查也透過
+## 
+## 下載的二進位程式套件在
+##  C:\Users\Ava\AppData\Local\Temp\Rtmp8qhq90\downloaded_packages 裡
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+\NormalTok{stock\_short }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"C:}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Users}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Ava}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Desktop}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{R}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{HW1}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{stock.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 10 Columns: 63
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (2): id_name, type
+## dbl (61): 2024/3/7, 2024/3/6, 2024/3/5, 2024/3/4, 2024/3/1, 2024/2/29, 2024/...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stock\_short1 }\OtherTok{\textless{}{-}}\FunctionTok{separate}\NormalTok{(stock\_short,id\_name,}\AttributeTok{into =} \FunctionTok{c}\NormalTok{(}\StringTok{"id"}\NormalTok{,}\StringTok{"name"}\NormalTok{),}\AttributeTok{sep =} \StringTok{" "}\NormalTok{)}
+\NormalTok{stock\_short2 }\OtherTok{\textless{}{-}} \FunctionTok{gather}\NormalTok{(stock\_short1,}\AttributeTok{key =} \StringTok{"time"}\NormalTok{ ,}\AttributeTok{value =} \StringTok{"value"}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{id,}\SpecialCharTok{{-}}\NormalTok{name,}\SpecialCharTok{{-}}\NormalTok{type)}
+\NormalTok{stock\_short3 }\OtherTok{\textless{}{-}}\FunctionTok{separate}\NormalTok{(stock\_short2,time,}\AttributeTok{into =} \FunctionTok{c}\NormalTok{(}\StringTok{"year"}\NormalTok{,}\StringTok{"month"}\NormalTok{,}\StringTok{"date"}\NormalTok{),}\AttributeTok{sep =} \StringTok{"/"}\NormalTok{)}
+\NormalTok{stock\_long }\OtherTok{\textless{}{-}} \FunctionTok{pivot\_wider}\NormalTok{(stock\_short3, }\AttributeTok{names\_from =}\NormalTok{ type, }\AttributeTok{values\_from =}\NormalTok{ value) }
+\FunctionTok{print}\NormalTok{(stock\_long) }\CommentTok{\#answer}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 305 x 7
+##    id    name   year  month date    open  close
+##    <chr> <chr>  <chr> <chr> <chr>  <dbl>  <dbl>
+##  1 2330  台積電 2024  3     7      755    760  
+##  2 2002  中鋼   2024  3     7       24     24.0
+##  3 2885  元大金 2024  3     7       27.3   28.1
+##  4 9904  寶成   2024  3     7       30.3   30.4
+##  5 2454  聯發科 2024  3     7     1220   1230  
+##  6 2330  台積電 2024  3     6      718    735  
+##  7 2002  中鋼   2024  3     6       24.0   24.0
+##  8 2885  元大金 2024  3     6       27.4   27.5
+##  9 9904  寶成   2024  3     6       30.5   30.3
+## 10 2454  聯發科 2024  3     6     1145   1190  
+## # i 295 more rows
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  電商公司，有三個資料集合：
+\end{enumerate}
+
+sales.df：產品銷售狀況 （``salesID''銷售紀錄編號，``Store''店家編號，
+``Product''產品編號，``Client''顧客編號，``UnitPrice''單價，``Quantity''購買數量，``Region''顧客國家
+）
+
+client.df：顧客的個人資料
+(``Client''顧客編號，``Age''年紀，``Membership''會員等級，
+``Gender''性別 )
+
+prod.df：產品的相關資料（``Item'' 代號＿產品）
+請用tidyverse套件裡學到的方法，分析
+
+(1.) prod.df
+裡將兩個變數，誤紀錄為在同一個column，其將其分開為兩個變數Product（數字部分）及Item（商品部分），取代原prod.df。
+(2.) 將3個報表合併為full.table (3.) 在full.table.
+新增一個變數「總消費」為spend = UnitPrice*Quantity (4.)
+在full.table將會員等級分組，其中gold和diamond的顧客為一組，其他等級的為一組，針對兩組客戶進行比較介紹（例如平均年紀、性別、國家、消費情況差異等）。
+(5.)
+在full.table針對女性客戶進行分析（例如平均年紀、國家、消費情況等），並對他們在不同產品的「總消費」畫圖分析。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#資料匯入}
+\NormalTok{client\_list }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"C:}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Users}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Ava}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Desktop}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{R}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{HW1}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{client\_list.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## Rows: 20 Columns: 5
+## -- Column specification
+## -------------------------------------------------------- Delimiter: "," chr
+## (2): Membership, Gender dbl (3): ...1, Client, Age
+## i Use `spec()` to retrieve the full column specification for this data. i
+## Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## * `` -> `...1`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{salesdata }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"C:}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Users}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Ava}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Desktop}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{R}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{HW1}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{salesdata.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## New names:
+## Rows: 100 Columns: 7
+## -- Column specification
+## -------------------------------------------------------- Delimiter: "," chr
+## (2): Store, Region dbl (5): ...1, Product, Client, UnitPrice, Quantity
+## i Use `spec()` to retrieve the full column specification for this data. i
+## Specify the column types or set `show_col_types = FALSE` to quiet this message.
+## * `` -> `...1`
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{product\_list }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"C:}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Users}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Ava}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{Desktop}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{R}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{HW1}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{product\_list.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 6 Columns: 1
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (1): Item
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#(1.)}
+\NormalTok{product\_list1 }\OtherTok{\textless{}{-}} \FunctionTok{separate}\NormalTok{(product\_list,Item,}\AttributeTok{into =} \FunctionTok{c}\NormalTok{(}\StringTok{"Product"}\NormalTok{,}\StringTok{"Item"}\NormalTok{),}\AttributeTok{sep =} \StringTok{"\_"}\NormalTok{,,}\AttributeTok{convert=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{product\_list1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   Product Item      
+##     <int> <chr>     
+## 1     101 iPhone    
+## 2     102 iPad      
+## 3     103 MacBook   
+## 4     104 iMac      
+## 5     105 AirPods   
+## 6     106 AppleWatch
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 載入套件：'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## 下列物件被遮斷自 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## 下列物件被遮斷自 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 100 x 12
+##    ...1.x Store Product Client UnitPrice Quantity Region ...1.y   Age Membership
+##     <dbl> <chr>   <dbl>  <dbl>     <dbl>    <dbl> <chr>   <dbl> <dbl> <chr>     
+##  1      1 A         103      1        10       72 Brazil      1    36 basic     
+##  2     25 A         103      1        18       26 Korea       1    36 basic     
+##  3     28 C         105      1        11        4 Japan       1    36 basic     
+##  4     10 A         103      2        14       58 China       2    46 diamond   
+##  5     11 C         101      2         8       35 Brazil      2    46 diamond   
+##  6     41 B         105      2         4       76 Korea       2    46 diamond   
+##  7     59 B         101      2         7       58 Korea       2    46 diamond   
+##  8     67 B         105      2        14       98 Thail~      2    46 diamond   
+##  9     84 C         105      2        14       59 Germa~      2    46 diamond   
+## 10     97 B         105      2         9       20 Brazil      2    46 diamond   
+## # i 90 more rows
+## # i 2 more variables: Gender <chr>, Item <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#(3.)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v forcats   1.0.0     v purrr     1.0.2
+## v ggplot2   3.5.1     v stringr   1.5.1
+## v lubridate 1.9.3     v tibble    3.2.1
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{full\_table}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{( }\AttributeTok{Spend =}\NormalTok{ UnitPrice}\SpecialCharTok{*}\NormalTok{Quantity ) }\OtherTok{{-}\textgreater{}}\NormalTok{ full\_table1}
+\FunctionTok{library}\NormalTok{(writexl)}
+\FunctionTok{write\_xlsx}\NormalTok{(full\_table1, }\AttributeTok{path =} \StringTok{"C:/Users/Ava/Downloads/full\_table1.xlsx"}\NormalTok{) }\CommentTok{\#保存下來方便之後跑EDA!!}
+\NormalTok{full\_table1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 100 x 13
+##    ...1.x Store Product Client UnitPrice Quantity Region ...1.y   Age Membership
+##     <dbl> <chr>   <dbl>  <dbl>     <dbl>    <dbl> <chr>   <dbl> <dbl> <chr>     
+##  1      1 A         103      1        10       72 Brazil      1    36 basic     
+##  2     25 A         103      1        18       26 Korea       1    36 basic     
+##  3     28 C         105      1        11        4 Japan       1    36 basic     
+##  4     10 A         103      2        14       58 China       2    46 diamond   
+##  5     11 C         101      2         8       35 Brazil      2    46 diamond   
+##  6     41 B         105      2         4       76 Korea       2    46 diamond   
+##  7     59 B         101      2         7       58 Korea       2    46 diamond   
+##  8     67 B         105      2        14       98 Thail~      2    46 diamond   
+##  9     84 C         105      2        14       59 Germa~      2    46 diamond   
+## 10     97 B         105      2         9       20 Brazil      2    46 diamond   
+## # i 90 more rows
+## # i 3 more variables: Gender <chr>, Item <chr>, Spend <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#(4.) EDA Start!!!}
+\CommentTok{\#分組}
+\NormalTok{full\_table2 }\OtherTok{\textless{}{-}}\NormalTok{ full\_table1 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Group =} \FunctionTok{ifelse}\NormalTok{(Membership }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"gold"}\NormalTok{, }\StringTok{"diamond"}\NormalTok{), }\StringTok{"Gold \& Diamond"}\NormalTok{, }\StringTok{"Other"}\NormalTok{))}
+\NormalTok{full\_table2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 100 x 14
+##    ...1.x Store Product Client UnitPrice Quantity Region ...1.y   Age Membership
+##     <dbl> <chr>   <dbl>  <dbl>     <dbl>    <dbl> <chr>   <dbl> <dbl> <chr>     
+##  1      1 A         103      1        10       72 Brazil      1    36 basic     
+##  2     25 A         103      1        18       26 Korea       1    36 basic     
+##  3     28 C         105      1        11        4 Japan       1    36 basic     
+##  4     10 A         103      2        14       58 China       2    46 diamond   
+##  5     11 C         101      2         8       35 Brazil      2    46 diamond   
+##  6     41 B         105      2         4       76 Korea       2    46 diamond   
+##  7     59 B         101      2         7       58 Korea       2    46 diamond   
+##  8     67 B         105      2        14       98 Thail~      2    46 diamond   
+##  9     84 C         105      2        14       59 Germa~      2    46 diamond   
+## 10     97 B         105      2         9       20 Brazil      2    46 diamond   
+## # i 90 more rows
+## # i 4 more variables: Gender <chr>, Item <chr>, Spend <dbl>, Group <chr>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#年紀}
+\NormalTok{age\_comparison }\OtherTok{\textless{}{-}}\NormalTok{ full\_table2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Group) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Average\_Age =} \FunctionTok{mean}\NormalTok{(Age, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{age\_comparison}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   Group          Average_Age
+##   <chr>                <dbl>
+## 1 Gold & Diamond        41.8
+## 2 Other                 40.9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#性別}
+\NormalTok{gender\_comparison }\OtherTok{\textless{}{-}}\NormalTok{ full\_table2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Group, Gender) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Count =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Percentage =}\NormalTok{ Count }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Count) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'Group'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gender\_comparison}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 4
+## # Groups:   Group [2]
+##   Group          Gender Count Percentage
+##   <chr>          <chr>  <int>      <dbl>
+## 1 Gold & Diamond female    43       75.4
+## 2 Gold & Diamond male      14       24.6
+## 3 Other          female    21       48.8
+## 4 Other          male      22       51.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#國家}
+\NormalTok{country\_comparison }\OtherTok{\textless{}{-}}\NormalTok{ full\_table2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Group, Region) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Count =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(Group, }\FunctionTok{desc}\NormalTok{(Count))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` has grouped output by 'Group'. You can override using the
+## `.groups` argument.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{country\_comparison}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 20 x 3
+## # Groups:   Group [2]
+##    Group          Region   Count
+##    <chr>          <chr>    <int>
+##  1 Gold & Diamond China        8
+##  2 Gold & Diamond Korea        8
+##  3 Gold & Diamond Germany      6
+##  4 Gold & Diamond Taiwan       6
+##  5 Gold & Diamond Thailand     6
+##  6 Gold & Diamond Brazil       5
+##  7 Gold & Diamond France       5
+##  8 Gold & Diamond Spain        5
+##  9 Gold & Diamond USA          5
+## 10 Gold & Diamond Japan        3
+## 11 Other          Korea       11
+## 12 Other          Taiwan       6
+## 13 Other          Spain        5
+## 14 Other          USA          5
+## 15 Other          Brazil       4
+## 16 Other          France       4
+## 17 Other          China        3
+## 18 Other          Germany      2
+## 19 Other          Thailand     2
+## 20 Other          Japan        1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#消費差異}
+\NormalTok{spend\_comparison }\OtherTok{\textless{}{-}}\NormalTok{ full\_table2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Group) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Average\_Spend =} \FunctionTok{mean}\NormalTok{(Spend, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{Total\_Spend =} \FunctionTok{sum}\NormalTok{(Spend, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{Std\_Dev\_Spend =} \FunctionTok{sd}\NormalTok{(Spend, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#(5.)}
+\NormalTok{full\_table2\_female }\OtherTok{\textless{}{-}}\NormalTok{ full\_table2[full\_table2}\SpecialCharTok{$}\NormalTok{Gender }\SpecialCharTok{==}\StringTok{"female"}\NormalTok{,]}
+\FunctionTok{write\_xlsx}\NormalTok{(full\_table2\_female, }\AttributeTok{path =} \StringTok{"C:/Users/Ava/Downloads/full\_table2\_female.xlsx"}\NormalTok{)}
+
+\CommentTok{\#年紀}
+\NormalTok{age\_comparison\_female }\OtherTok{\textless{}{-}}\NormalTok{ full\_table2\_female }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Average\_Age =} \FunctionTok{mean}\NormalTok{(Age, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+
+\FunctionTok{pie}\NormalTok{(}\FunctionTok{table}\NormalTok{(full\_table2\_female}\SpecialCharTok{$}\NormalTok{Age))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#國家}
+\NormalTok{country\_comparison\_female }\OtherTok{\textless{}{-}}\NormalTok{ full\_table2\_female }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Region) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Count =} \FunctionTok{n}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(Count))}
+
+\FunctionTok{pie}\NormalTok{(}\FunctionTok{table}\NormalTok{(full\_table2\_female}\SpecialCharTok{$}\NormalTok{Region)) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#消費差異}
+\NormalTok{spend\_comparison\_female }\OtherTok{\textless{}{-}}\NormalTok{ full\_table2\_female }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{Average\_Spend =} \FunctionTok{mean}\NormalTok{(Spend, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{Total\_Spend =} \FunctionTok{sum}\NormalTok{(Spend, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+            \AttributeTok{Std\_Dev\_Spend =} \FunctionTok{sd}\NormalTok{(Spend, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+
+\CommentTok{\#不同產品的「總消費」畫圖分析}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(full\_table2\_female, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Spend , }\AttributeTok{fill =}\NormalTok{ Item)) }\SpecialCharTok{+} \FunctionTok{geom\_density}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(p, }\AttributeTok{labels =} \StringTok{"AUTO"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{HW1_files/figure-latex/unnamed-chunk-5-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (x, y, ...) 
+## UseMethod("plot")
+## <bytecode: 0x0000025e693bbe78>
+## <environment: namespace:base>
+\end{verbatim}
+
+\end{document}

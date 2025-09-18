@@ -1,0 +1,158 @@
+---
+title: "HW5"
+output: html_document
+date: "2024-12-31"
+---
+## 作業目標
+
+請任選一位 Youtuber，針對他的影片簡介描述進行以下分析：
+
+1. **文字清理**：
+   - 移除不必要的符號、數字及停用詞。
+   - 保留關鍵的中文字詞。
+
+2. **文字探勘**：
+   - 繪製文字雲。
+   - 進行詞頻分析，了解該 Youtuber 使用字詞的習慣。
+   
+```{r}
+# Import the data
+library(readr)
+ytvideo <- read_csv("C:/Users/Ava/Desktop/R/HW5/ytvideo.csv")
+View(ytvideo)
+```
+
+```{r}
+# import the packages
+library(dplyr)
+library(ggplot2)
+library(tm)
+library(wordcloud)
+library(RColorBrewer)
+```
+
+```{r}
+# classification
+ytvideo_filtered <- ytvideo %>%
+  filter(yt == "蔡阿嘎") %>%
+  select(title)
+```
+
+這裡我做了兩個版本，一個有用到中文分詞套件，一個沒有。
+以下為沒有用到中文分詞套件的版本。
+```{r}
+# data cleaning
+text_data <- paste(ytvideo_filtered$title, collapse = " ")
+
+clean_text <- text_data %>%
+  tolower() %>%                                     
+  gsub("[[:punct:]]", " ", .) %>%                   
+  gsub("[^\\p{Han}]", " ", ., perl = TRUE) %>%                     
+  gsub("[0-9]", " ", .) %>%                         
+  gsub("[\\r\\n]", " ", .) %>%                      
+  gsub("\\s+", " ", .) %>%                          
+  trimws() 
+
+word_tokens <- unlist(strsplit(clean_text, "\\s+"))
+```
+
+```{r}
+# remove stop words
+stop_words <- c("的", "是", "了", "在", "我", "也", "和", "有", "這", "他", "她", "就", "不")
+filtered_words <- word_tokens[!word_tokens %in% stop_words]
+filtered_words
+```
+
+從這個分詞沒有比較仔細的資料中可以看出，蔡阿嘎的影片可能以旅遊型的為主。
+```{r}
+# wordcloud
+word_freq <- table(filtered_words)
+wordcloud(names(word_freq), 
+          freq = word_freq, 
+          min.freq = 2, 
+          random.order = FALSE, 
+          colors = brewer.pal(8, "Dark2"))
+
+```
+因為分詞沒有整理得太乾淨，所以這裡的文字雲資料顯示的並不多，不過從這個可以看的出來:
+1.主題很明顯是以"食尚玩嘎"為標題
+2.蔡阿嘎本人的名字也常出現在影片標題中。
+3.形式首要是以小時挑戰賽進行，真心推薦為次要。
+4.瘋狂出現了好幾次，可能這個影片不像正常旅遊行程。
+5.馬叔叔出現了好幾次，經查詢後得知為另一名youtuber，他們可能常常出合作影片。
+
+```{r}
+# visualization
+word_freq_df <- as.data.frame(word_freq, stringsAsFactors = FALSE)
+colnames(word_freq_df) <- c("word", "freq")
+
+top_words <- word_freq_df %>%
+  arrange(desc(freq)) %>%
+  head(20)
+
+ggplot(top_words, aes(x = reorder(word, freq), y = freq)) +
+  geom_bar(stat = "identity", fill = "blue") +               
+  geom_text(aes(label = freq), hjust = -0.2, size = 4) +     
+  coord_flip() +                                             
+  labs(title = "詞頻分析", x = "詞語", y = "頻率") +         
+  theme_minimal()   
+```
+以上圖表為字詞出現頻率的長條圖，和文字雲相比，長條圖可以更明顯從圖表中看出實際出現幾次，但文字雲很美觀，可以用在設計和行銷上。
+
+
+
+接下來是有用到中文分詞套件的版本
+```{r}
+# data cleaning
+text_data <- paste(ytvideo_filtered$title, collapse = " ")
+
+clean_text <- text_data %>%
+  tolower() %>%                                     
+  gsub("[[:punct:]]", " ", .) %>%                   
+  gsub("[^\\p{Han}]", " ", ., perl = TRUE) %>%                     
+  gsub("[0-9]", " ", .) %>%                         
+  gsub("[\\r\\n]", " ", .) %>%                      
+  gsub("\\s+", " ", .) %>%                          
+  trimws() 
+
+library(jiebaR)
+cutter <- worker()  
+word_tokens <- cutter[clean_text] 
+```
+
+```{r}
+# remove stop words
+stop_words <- c("的", "是", "了", "在", "我", "也", "和", "有", "這", "他", "她", "就", "不")
+filtered_words <- word_tokens[!word_tokens %in% stop_words]
+filtered_words
+```
+
+
+```{r}
+# wordcloud
+word_freq <- table(filtered_words)
+wordcloud(names(word_freq), 
+          freq = word_freq, 
+          min.freq = 2, 
+          random.order = FALSE, 
+          colors = brewer.pal(8, "Dark2"))
+
+```
+```{r}
+# visualization
+word_freq_df <- as.data.frame(word_freq, stringsAsFactors = FALSE)
+colnames(word_freq_df) <- c("word", "freq")
+
+top_words <- word_freq_df %>%
+  arrange(desc(freq)) %>%
+  head(20)
+
+ggplot(top_words, aes(x = reorder(word, freq), y = freq)) +
+  geom_bar(stat = "identity", fill = "blue") +               
+  geom_text(aes(label = freq), hjust = -0.2, size = 4) +     
+  coord_flip() +                                             
+  labs(title = "詞頻分析", x = "詞語", y = "頻率") +         
+  theme_minimal()   
+
+```
+仔細切分過後並和前面結果相比，可以發現前幾高的還是食尚玩嘎和蔡阿嘎、馬叔叔等，和前面結果不同的是美食、日本、台灣、東京次數也不算低，由此可知影片選定的旅遊地點可能多在這幾個地方。此外，瘋狂和挑戰賽出現的次數也不少，同樣的也可以看出影片可能並非一般的旅遊vlog。
